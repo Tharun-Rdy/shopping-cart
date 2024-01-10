@@ -1,8 +1,8 @@
 """
-Project Name  : Shopping Cart Project
+Project Name  : Shopping Cart Project using exception handling and data types like list and dictionary
 Developer     : Tharun
 Date          : 10-01-2023
-Description   : In this project we are going to built the customer's online retail shopping list by using tasks like
+Description   : In this project we are going to built the customer's online retail shopping details by using tasks like
                 1. Creating the User
                 2. Login to the Application
                 3. create the products 
