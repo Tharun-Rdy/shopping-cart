@@ -1,9 +1,22 @@
 """
 Project Name  : Shopping Cart Project
 Developer     : Tharun
-Date          : 29-12-2023
-Description   : In this project we are going to built the customer's online retail shopping list by using tasks like create the products, add to cart, customize cart, apply discount & get the bill
-Version       : v1.8
+Date          : 10-01-2023
+Description   : In this project we are going to built the customer's online retail shopping list by using tasks like
+                1. Creating the User
+                2. Login to the Application
+                3. create the products 
+                4. add to cart 
+                5. View cart
+                6. apply discount 
+                7. get the bill
+                8. Purchase Date
+                9. Number of Visits
+                10. Return the Product
+                11. Edit the Cart
+                12. Clear the Cart
+                13. Exit Shopping
+Version       : v2.0
 """
 global cart
 cart=[]
@@ -11,16 +24,65 @@ def e_shopping():
     print("="*50)
     print("\t******Shopping Cart******") 
     print("="*50)
-    print("1. Create Products")
-    print("2. Add to Cart")
-    print("3. View Cart")
-    print("4. Edit cart")
-    print("5. Clear Cart")
+    print("1. Creating User")
+    print("2. Login into the App")
+    print("3. Create Products")
+    print("4. Add to Cart")
+    print("5. View Cart")
     print("6. Apply Discount")
     print("7. Get the Bill")
     print("8. Purchase Date")
-    print("9. Number of Visits")
+    print("9. No of visits")
+    print("10. Return the product")
+    print("11. Edit cart")
+    print("12. Clear Cart")
+    print("13. Exit the shopping")
     print("-"*50)
+
+user_details=[]
+def create_user():
+     try:
+          new_user=input("Enter whether you are new user or not [yes/no]: ")
+          if new_user.lower()=="no":
+               print("please do click on the login button: ")
+               login()
+          else:
+               print("Please do register your account details: ")
+               first_name=input("Enter your first Name: ")
+               last_name=input("Enter your last name: ")
+               mobile_no = int(input("Enter your mobile number: "))
+               email = input("Enter your email id: ")
+               user_details.append({'First Name':first_name, 'Last Name':last_name, 'Phone Number':mobile_no, 'Email Id':email})
+               print("please do click on the register button ")
+               print("Congrats, Your user account has been created successfully")
+               user_login=input("Enter whether you want to login to your account or not [yes/no]: ")
+               if user_login.lower()=='yes':
+                    login()
+               else:
+                    main()
+     except ValueError:
+          print("Please do enter valid details")
+
+def login():
+     try:
+          user=input("Enter whether you are existing user or not [yes/no]: ")
+          if user.lower()=='no':
+               print("Please do register your account details first: ")
+               create_user()
+          else:
+               print("Please do login with your credentials")
+               user_name=input("Enter your user name: ")
+               password=input("Enter your password: ")
+               user_details.append({'User Name':user_name, 'Password':password})
+               print("You're login has been successful ")
+               continue_state=input("Do you want to visit the products on the site [yes/no]: ")
+               if continue_state.lower()=="yes":
+                    select_products()
+               else:
+                    main()
+     except ValueError:
+          print("Please do enter valid details")
+
 
 def select_products():
      try:
@@ -35,6 +97,7 @@ def select_products():
           if verify.lower()=='yes':
                # print(cart)
                view_cart()
+               main()
      except ValueError:
           print("Please do enter valid information")
 
@@ -45,6 +108,7 @@ def add_to_cart():
         verify=input("Want to re-check the product details:")
         if verify.lower() == "yes":
                 print(cart)
+                main()
      except ValueError:
         print("Please Enter the Valid Information")
 
@@ -60,6 +124,7 @@ def view_cart():
                for key,value in itm.items():
                     print(f"{key}\t-->\t{value}")
           i=i+1
+          main()
 
 def discount():
      print("="*50)
@@ -85,6 +150,7 @@ def discount():
                print("The discount you avail on this purchase is:",(10/100)*purchase_amount)
           else:
                print("The discount you avail on this purchase is:",(5/100)*purchase_amount)
+     main()
 
 def purchase_bill():
      purchase=int(input("Enter the amount of purchase you made [positive number]:"))
@@ -100,73 +166,115 @@ def purchase_bill():
           print("The final bill amount on your purchase after applying the discount is:", purchase-(10/100)*purchase)
      elif 1000<=purchase>500:
           print("The final bill amount on your purchase after applying the discount is:", purchase-(5/100)*purchase)
+     main()
 
 def purchase_date():
      date=int(input("Enter the date of your purchase [date-month-year]: "))
      print("The date of your purchase is: ", date)
+     main()
 
 def no_of_vists():
      visits = int(input("Enter your number of visits: "))
      print("The number of visits:", visits)
+     main()
+
+def return_product():
+     return_back=input("Enter whether you want to return back the product or not[yes/no]: ")
+     if return_back.lower=='yes':
+          reason_of_return=input("Select an option given below for the return of the product: ")
+          print("wrong product delivered")
+          print("Damaged product delivered")
+          print("You find better product or price")
+          print("product is of poor quality")
+          print("Not sastisified with the product delivered")
+          if reason_of_return==True:
+               print("Your product will be collelcted by amazon agent within short time")
+          else:
+               print("Sorry, we cannot return back the product")
+          main()
 
 def edit_cart():
      print("="*50)
      print("\t******Edit Your Cart******") 
      print("="*50)
-     print("1. Create Products")
-     print("2. Add to Cart")
-     print("3. View Cart")
-     print("4. Apply Discount")
-     print("5. Get the Bill")
-     print("6. Purchase Date")
-     print("7. Number of Visits")
-     print("8. Clear Cart")
+     print("1. Creating User")
+     print("2. Login into the App")
+     print("3. Create Products")
+     print("4. Add to Cart")
+     print("5. View Cart")
+     print("6. Apply Discount")
+     print("7. Get the Bill")
+     print("8. Purchase Date")
+     print("9. No of visits")
+     print("10. Return the product")
      print("-"*50)
+
      choice=int(input("Enter your choice of Edit: "))
      try:
           if choice==1:
-               select_products()
+               create_user()
           elif choice==2:
-               add_to_cart()
+               login()
           elif choice==3:
-               view_cart()
+               select_products()
           elif choice==4:
-               discount()
+               add_to_cart()
           elif choice==5:
-               purchase_bill()
+               view_cart()
           elif choice==6:
-               purchase_date()
+               discount()
           elif choice==7:
+               purchase_bill()
+          elif choice==8:
+               purchase_date()
+          elif choice==9:
                no_of_vists()
+          elif choice==10:
+               return_product()
+     
      except ValueError:
           print("Please do enter valid information")
-
+     main()
 
 def main():
      e_shopping()
      option=int(input("Enter your option: "))
      if option==1:
-          select_products()
+          create_user()
      elif option==2:
-          add_to_cart()
+          login()
      elif option==3:
-          view_cart()
+          select_products()
      elif option==4:
-          discount()
+          add_to_cart()
      elif option==5:
-          purchase_bill()
+          view_cart()
      elif option==6:
-          purchase_date()
+          discount()
      elif option==7:
-          no_of_vists()
+          purchase_bill()
      elif option==8:
+          purchase_date()
+     elif option==9:
+          no_of_vists()
+     elif option==10:
+          return_product()
+     elif option==11:
+          edit_cart()
+     elif option==12:
           print("Erasing the existing data from your data base: ")
           cart.clear()
-     continuestate=input("\n Do you want to continue Again(Y or N ):")
-     if continuestate=='Y' or continuestate=='y':
-          main()
-     elif continuestate == 'N' or continuestate=='n':
-          print("Thank you, Visit Again")
+
+def exit_shopping():
+     shopping=True
+     while shopping:
+          e_shopping
+          continue_shopping=input("\n Do you want to continue the shopping(yes or no ):")
+          if continue_shopping.lower()=='yes' :
+               main()
+          else:
+               print("Thank you for shopping with us, Please do Visit Again")
+               shopping=False
 
 if "__init__"==main():
      main()
